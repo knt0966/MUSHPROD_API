@@ -7,6 +7,7 @@ import joblib
 from pathlib import Path
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 
 # Load the model
@@ -16,6 +17,16 @@ scaler_y = model_dictionary['scaler_y']
 gp_model = model_dictionary['gp_model']
 
 app = FastAPI()
+
+# Set up CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
+
 
 static_dir = Path(__file__).resolve().parent / 'static'
 app.mount("/static", StaticFiles(directory=static_dir), name="static")
