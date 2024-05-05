@@ -11,7 +11,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 # Load the model
-model_dictionary = joblib.load('gpr_model_dictionary_04.pkl')
+model_dictionary = joblib.load('gpr_model_dictionary_05.pkl')
 scaler_X = model_dictionary['scaler_X']
 scaler_y = model_dictionary['scaler_y']
 gp_model = model_dictionary['gp_model']
